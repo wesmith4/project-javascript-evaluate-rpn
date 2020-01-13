@@ -2,7 +2,7 @@
   "name": "project-javascript-evaluate-rpn",
   "version": "0.0.0",
   "description": "Build a command-line program to evaluate expressions written in Reverse Polish Notation (RPN)",
-  "main": "index.js",
+  "main": "evaluateRPN.js",
   "dependencies": {},
   "devDependencies": {
     "eslint": "^6.8.0",
