@@ -37,6 +37,5 @@ Try to focus on 1-2 variables. Keep it simple. Go for those variables you can ac
 
 For example, there might be something interesting to say about the design of our notational system and the way it intersects with the economics of textbooks, but that's going to be hard to experiment with. But if you want to think through how easy or hard it is to edit expressions you've written down on a piece of paper, well, that's something you can play with directly.
 
-
 [wiki-ti-108]: https://en.wikipedia.org/wiki/TI-108
 [url-simple-calculator]: https://calculator-1.com/simple/
