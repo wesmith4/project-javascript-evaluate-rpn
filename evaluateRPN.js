@@ -14,28 +14,27 @@
  * @returns {number} The number the input expression evaluates to
  */
 
-
 // Create a function to accept other functions and call them with arguments
-function condense(a,b,fn){
-  return fn(a,b);
+function condense(a, b, fn) {
+  return fn(a, b);
 }
 
 // Define functions for my operations
-function add(a,b){
-  return a+b;
+function add(a, b) {
+  return a + b;
 }
-function subtract(a,b){
-  return a-b;
+function subtract(a, b) {
+  return a - b;
 }
-function multiply(a,b){
+function multiply(a, b) {
   return a * b;
 }
-function divide(a,b){
+function divide(a, b) {
   return a / b;
 }
 
 // Create a dictionary of operators:functions
-const operationDict = {'+':add, '-':subtract, '*':multiply, '/':divide}; 
+const operationDict = { '+': add, '-': subtract, '*': multiply, '/': divide };
 
 // Define the function for the program
 function evaluateRPN(expr) {
@@ -57,39 +56,37 @@ function evaluateRPN(expr) {
       - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push
       - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pop
   */
-  
+
   // Create an array by splitting the input expresssion
   let elements = expr.split(' ');
 
   // Convert all numerals in the expression from strings into numbers
-  for (let i = 0; i < elements.length; i++){
-    if (Number(elements[i]) || Number(elements[i]) === 0){
+  for (let i = 0; i < elements.length; i++) {
+    if (Number(elements[i]) || Number(elements[i]) === 0) {
       elements[i] = Number(elements[i]);
     }
   }
 
   // Handle the special case for a single number passed into the function
-  if (elements.length === 1){
+  if (elements.length === 1) {
     return elements[0];
   }
 
   // Use a while loop to call the "condense" function to simplify the expression
-  let i = 0
-  while (elements.length >= 3){
+  let i = 0;
+  while (elements.length >= 3) {
     // If statement to recognize a series [number, number, operator]
-    if (typeof elements[i] === 'number' && typeof elements[i+1] === 'number' && ['+','-','*', '/'].includes(elements[i+2])){
+    if (typeof elements[i] === 'number' && typeof elements[i + 1] === 'number' && ['+', '-', '*', '/'].includes(elements[i + 2])) {
       // When it recognizes this series, replace those 3 items with the output of "condense"
-      elements.splice(i,3,condense(elements[i],elements[i+1], operationDict[elements[i+2]]));
+      elements.splice(i, 3, condense(elements[i], elements[i + 1], operationDict[elements[i + 2]]));
       i = 0;
     } else {
       i++;
     }
-    
   }
-  
+
   // Return the remaining number in the expression array
   return elements[0];
-
 }
 
 if (require.main === module) {
