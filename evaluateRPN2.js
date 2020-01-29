@@ -42,28 +42,19 @@ function evaluateRPN(expr) {
         - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push
         - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pop
     */
-  // Create an array by splitting the input expression
-  let elements = expr.split(' ');
 
-  // Convert all numerals in the expression from strings into numbers
-  for (let i = 0; i < elements.length; i++) {
-    if (Number(elements[i]) || Number(elements[i]) === 0) {
-      elements[i] = Number(elements[i]);
-    }
+  function isNumeric(str) {
+    return !isNaN(str);
   }
-  console.log(elements);
 
-  // Handle the special case for a single number passed into the function
-  if (elements.length === 1) {
-    return elements[0];
-  }
+  let tokens = expr.split(' ').map(token => isNumeric(token) ? Number(token) : token);
 
   // Create a stack to do the scratch work w/ RPN operations
   let workingStack = [];
 
-  // Use a for loop to push items from "elements" to "workingStack"
+  // Use a for loop to push items from "tokens" to "workingStack"
   // Execute operations as appropriate within this loop
-  for (let item of elements) {
+  for (let item of tokens) {
     if (typeof item === 'number') {
       workingStack.push(item);
     } else {
